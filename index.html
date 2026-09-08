@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人作品集 | 大學四年成果展</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入 FontAwesome 圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <nav class="navbar">
+        <div class="logo">MyPortfolio</div>
+        <ul class="nav-links">
+            <li><a href="#about">關於我</a></li>
+            <li><a href="#projects">專題與作品</a></li>
+            <li><a href="#skills">專業技能</a></li>
+            <li><a href="#contact">聯絡方式</a></li>
+        </ul>
+    </nav>
+
+    <!-- 個人簡介區塊 -->
+    <section id="about" class="hero-section">
+        <div class="hero-content">
+            <h1>你好，我是 <span class="highlight">[你的名字]</span></h1>
+            <p>畢業於 [你的大學與系所] | 專注於 [你的領域，例如：Web 開發 / 資料分析 / UI設計]</p>
+            <p class="subtitle">歡迎來到我的個人網站，這裡記錄了我大學四年來的專題成果與課堂作品。</p>
+            <a href="#projects" class="btn">查看作品</a>
+        </div>
+    </section>
+
+    <!-- 專題與作品區塊 -->
+    <section id="projects" class="section">
+        <h2 class="section-title">作品展示</h2>
+        
+        <!-- 分類篩選按鈕 -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="capstone">畢業專題</button>
+            <button class="filter-btn" data-filter="coursework">課堂作業</button>
+            <button class="filter-btn" data-filter="sideproject">個人 Project</button>
+        </div>
+
+        <!-- 作品卡片列表 -->
+        <div class="projects-grid">
+
+            <!-- 作品卡片 1 -->
+            <div class="project-card capstone">
+                <img src="https://via.placeholder.com/400x250" alt="畢業專題">
+                <div class="project-info">
+                    <span class="tag">畢業專題</span>
+                    <h3>畢業專題：智慧系統開發</h3>
+                    <p>利用 Python 與 React 打造的整合平台，解決特定場景下的數據分析與自動化需求。</p>
+                    <div class="tech-stack">
+                        <span>Python</span><span>React</span><span>MySQL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> 程式碼</a>
+                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> 線上示範</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 作品卡片 2 -->
+            <div class="project-card coursework">
+                <img src="https://via.placeholder.com/400x250" alt="課堂作業">
+                <div class="project-info">
+                    <span class="tag">課堂作業</span>
+                    <h3>網頁程式設計大作業</h3>
+                    <p>獨立完成的響應式電商前端頁面，包含購物車功能與動態互動效果。</p>
+                    <div class="tech-stack">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> 程式碼</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 作品卡片 3 -->
+            <div class="project-card sideproject">
+                <img src="https://via.placeholder.com/400x250" alt="個人專案">
+                <div class="project-info">
+                    <span class="tag">個人 Project</span>
+                    <h3>個人 To-Do List App</h3>
+                    <p>使用原生 JavaScript 撰寫的待辦事項工具，支援 LocalStorage 本地儲存。</p>
+                    <div class="tech-stack">
+                        <span>JavaScript</span><span>CSS3</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> 程式碼</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 專業技能區塊 -->
+    <section id="skills" class="section bg-light">
+        <h2 class="section-title">專業技能</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> 前端開發</h3>
+                <ul>
+                    <li>HTML5 / CSS3 / JavaScript</li>
+                    <li>Bootstrap / Tailwind CSS</li>
+                    <li>Vue.js / React (基本經驗)</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-server"></i> 後端與資料庫</h3>
+                <ul>
+                    <li>Python (Flask/Django)</li>
+                    <li>Node.js</li>
+                    <li>MySQL / MongoDB</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-tools"></i> 開發工具與其他</h3>
+                <ul>
+                    <li>Git / GitHub 版本控制</li>
+                    <li>Figma UI/UX 設計</li>
+                    <li>Linux 基本指令</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡方式區塊 -->
+    <section id="contact" class="section">
+        <h2 class="section-title">聯絡我</h2>
+        <p class="contact-subtitle">如果您對我的作品感興趣或有合作機會，歡迎透過以下方式聯繫我！</p>
+        <div class="contact-links">
+            <a href="mailto:your.email@example.com" class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>your.email@example.com</span>
+            </a>
+            <a href="https://github.com/yourusername" target="_blank" class="contact-item">
+                <i class="fab fa-github"></i>
+                <span>GitHub Profile</span>
+            </a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank" class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>&copy; 2026 [你的名字]. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
