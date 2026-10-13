@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萬聖節搞怪特賣會 - 魔法南瓜燈</title>
+    <style>
+        :root {
+            --halloween-orange: #ff7518;
+            --halloween-purple: #3a1c71;
+            --halloween-dark: #121212;
+            --halloween-light: #fff3e0;
+            --accent-green: #2ecc71;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--halloween-dark);
+            color: var(--halloween-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 背景裝飾氛圍 */
+        body::before {
+            content: "🎃 👻 🦇 🕸️ 🍬";
+            position: absolute;
+            top: 10px;
+            font-size: 1.5rem;
+            opacity: 0.3;
+            letter-spacing: 20px;
+            pointer-events: none;
+        }
+
+        header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: var(--halloween-orange);
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(255, 117, 24, 0.6);
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: #b0bec5;
+            font-size: 1rem;
+        }
+
+        /* 商品卡片容器 */
+        .product-card {
+            background: linear-gradient(135deg, #22163b, #1b1b1b);
+            border: 2px solid var(--halloween-orange);
+            border-radius: 16px;
+            width: 320px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 117, 24, 0.2);
+            position: relative;
+            z-index: 10;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 117, 24, 0.4);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background-color: #2c2c2c;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            margin-bottom: 20px;
+            border: 1px dashed var(--halloween-orange);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: #b0bec5;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            color: var(--halloween-orange);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--halloween-orange);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 4px 15px rgba(255, 117, 24, 0.4);
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #e06512;
+        }
+
+        .add-to-cart-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* 購物車數量提示 */
+        .cart-badge {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #81c784;
+        }
+
+        /* 點擊後跳出的萬聖節飄浮元素樣式 */
+        .halloween-element {
+            position: fixed;
+            font-size: 2.5rem;
+            pointer-events: none;
+            z-index: 999;
+            animation: floatUpAndFade 1.5s ease-out forwards;
+        }
+
+        @keyframes floatUpAndFade {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.5) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-80px) scale(1.2) rotate(15deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-160px) scale(1) rotate(-15deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎃 萬聖節神祕商店 👻</h1>
+        <p>Trick or Treat！點擊加入購物車體驗魔法時刻</p>
+    </header>
+
+    <div class="product-card">
+        <div class="product-image" id="productImg">
+            🎃
+        </div>
+        <h2 class="product-title">精靈祝福魔法南瓜燈</h2>
+        <p class="product-description">內含微光 LED 蠟燭，能驅散黑暗並在夜晚召喚出好運的萬聖節氣氛裝飾品。</p>
+        <div class="product-price">NT$ 666</div>
+        <button class="add-to-cart-btn" id="cartBtn">加入購物車</button>
+        <div class="cart-badge" id="cartBadge">目前購物車：0 件商品</div>
+    </div>
+
+    <script>
+        const cartBtn = document.getElementById('cartBtn');
+        const cartBadge = document.getElementById('cartBadge');
+        const productCard = document.querySelector('.product-card');
+        
+        let cartCount = 0;
+        const halloweenIcons = ['🎃', '👻', '🦇', '🕸️', '🍬', '🧙‍♀️', '💀', '🕷️'];
+
+        cartBtn.addEventListener('click', (e) => {
+            // 更新購物車數量
+            cartCount++;
+            cartBadge.textContent = `目前購物車：${cartCount} 件商品 (🎃 成功加入!)`;
+
+            // 取得按鈕在畫面的位置以作為元素生成基準
+            const rect = cartBtn.getBoundingClientRect();
+            const startX = rect.left + rect.width / 2;
+            const startY = rect.top;
+
+            // 每次點擊隨機產生 6 ~ 9 個萬聖節元素往上飄
+            const spawnCount = Math.floor(Math.random() * 4) + 6;
+            
+            for (let i = 0; i < spawnCount; i++) {
+                createHalloweenElement(startX, startY);
+            }
+        });
+
+        function createHalloweenElement(x, y) {
+            const el = document.createElement('div');
+            el.classList.add('halloween-element');
+            
+            // 隨機選一個萬聖節符號
+            const randomIcon = halloweenIcons[Math.floor(Math.random() * halloweenIcons.length)];
+            el.textContent = randomIcon;
+
+            // 隨機水平偏移量
+            const offsetX = (Math.random() - 0.5) * 160;
+            
+            // 設定初始位置（在按鈕附近）
+            el.style.left = `${x + offsetX}px`;
+            el.style.top = `${y}px`;
+
+            // 隨機動畫時間微調
+            const duration = 1.2 + Math.random() * 0.8;
+            el.style.animationDuration = `${duration}s`;
+
+            document.body.appendChild(el);
+
+            // 動畫結束後自動移除 DOM 元素
+            setTimeout(() => {
+                el.remove();
+            }, duration * 1000);
+        }
+    </script>
+</body>
+</html>
